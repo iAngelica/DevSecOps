@@ -1,0 +1,10 @@
+function CompareResults(bytes32 key, uint result1, uint result2) public {
+  // Compare the results
+  bool comparisonResult = result1 > result2;
+
+  // Save the results and comparison to the mapping
+  Results storage result = results[key];
+  result.result1 = result1;
+  result.result2 = result2;
+  result.comparisonResult = comparisonResult;
+}
