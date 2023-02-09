@@ -1,0 +1,5 @@
+function GetInvertedProcess(bytes32 originalProcess) public view returns (bytes32) {
+  // Lookup the inverted process in the mapping
+  Process storage process = processes[originalProcess];
+  return process.invertedProcess;
+}
