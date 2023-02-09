@@ -1,0 +1,23 @@
+const fs = require('fs')
+const axios = require('axios')
+
+class SimpleStorage {
+  constructor () {
+    this.data = {}
+  }
+
+  async importFromUrl (url) {
+    try {
+      // Make a request to the URL to get the training data
+      const response = await axios.get(url)
+      const trainingData = response.data
+      // Save the training data in the simple storage
+      this.data.trainingData = trainingData
+      console.log('Training data imported successfully')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+module.exports = SimpleStorage
