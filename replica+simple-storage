@@ -1,0 +1,26 @@
+  async importFromUrl () {
+    try {
+      // Make a request to the URL to get the training data
+      const response = await axios.get('https://replika.ai')
+      const trainingData = response.data
+      // Save the training data in the simple storage
+      this.data.trainingData = trainingData
+      console.log('Training data imported successfully')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+const storage = new SimpleStorage()
+
+storage.importFromUrl()
+
+()
+
+#example: const SimpleStorage = require('./SimpleStorage')
+
+const storage = new SimpleStorage()
+
+const trainingDataUrl = 'https://example.com/training-data.json'
+
+storage.importFromUrl(trainingDataUrl)
