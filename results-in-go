@@ -1,0 +1,5 @@
+struct Results {
+  uint result1;
+  uint result2;
+  bool comparisonResult;
+}
