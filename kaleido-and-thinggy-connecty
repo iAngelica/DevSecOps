@@ -1,0 +1,63 @@
+import axios from "axios";
+
+const API_URL = "https://api.kaleido.io/v1";
+const CONSORTIUM_ID = "your_consortium_id";
+const ENVIRONMENT_ID = "your_environment_id";
+const PRIVATE_KEY = "your_private_key";
+
+async function deployContract(contractBytecode) {
+  try {
+    const response = await axios.post(
+      `${API_URL}/consortia/${CONSORTIUM_ID}/environments/${ENVIRONMENT_ID}/contracts`,
+      {
+        bytecode: contractBytecode
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${PRIVATE_KEY}`
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function callContract(contractAddress, functionSignature, parameters) {
+  try {
+    const response = await axios.post(
+      `${API_URL}/consortia/${CONSORTIUM_ID}/environments/${ENVIRONMENT_ID}/contracts/${contractAddress}/methods/${functionSignature}/invoke`,
+      parameters,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${PRIVATE_KEY}`
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function main() {
+  const contractBytecode = "0x606060..."; // the bytecode for your smart contract
+  const contract = await deployContract(contractBytecode);
+  console.log(`Deployed contract at address: ${contract.address}`);
+
+  const contractAddress = contract.address;
+  const functionSignature = "set(uint256)";
+  const parameters = {
+    gasPrice: "0x3B9ACA00",
+    gasLimit: "0x250CA",
+    to: contractAddress,
+    data: "0x60fe47b10000000000000000000000000000000000000000000000000000000000000005"
+  };
+  const result = await callContract(contractAddress, functionSignature, parameters);
+  console.log(`Result of contract call: ${JSON.stringify(result)}`);
+}
+
+main();
