@@ -1,0 +1,20 @@
+import spacy
+
+nlp = spacy.load('en_core_web_sm')
+
+# Load the training data
+with open('training-data.json', 'r') as f:
+  trainingData = json.load(f)
+
+# Train the model
+for example in trainingData:
+  text = example['text']
+  annotations = example['annotations']
+  doc = nlp(text)
+  for ent in doc.ents:
+    ent.merge(tag=annotations[ent.start:ent.end])
+nlp.to_disk('model')
+
+# Test the model
+doc = nlp("Hello, how are you today?")
+print([(token.text, token.tag_) for token in doc])
