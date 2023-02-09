@@ -1,0 +1,26 @@
+yarn test
+const { IntentClass } = require('./IntentClass')
+
+describe('IntentClass', () => {
+  describe('say', () => {
+    it('should call the tell function on the event object', () => {
+      const event = {
+        tell: jest.fn()
+      }
+      const intentClass = new IntentClass()
+      intentClass.say(event)
+      expect(event.tell).toHaveBeenCalledWith('say')
+    })
+  })
+
+  describe('ask', () => {
+    it('should call the ask function on the event object', () => {
+      const event = {
+        ask: jest.fn()
+      }
+      const intentClass = new IntentClass()
+      intentClass.ask(event)
+      expect(event.ask).toHaveBeenCalledWith('ask')
+    })
+  })
+})
