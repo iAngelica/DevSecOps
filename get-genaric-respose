@@ -1,0 +1,20 @@
+  /**
+   * @param {IEvent} event
+   */
+  say (event) {
+    const request = event.request
+    const responseCache = this.responseCache
+
+    // Check if the request has been made previously
+    if (responseCache[request]) {
+      // Return the cached response
+      event.tell(responseCache[request])
+    } else {
+      // Make a request to the model
+      const response = this.makeModelRequest(request)
+      // Cache the response
+      responseCache[request] = response
+      // Return the response
+      event.tell(response)
+    }
+  }
