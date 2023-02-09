@@ -1,0 +1,5 @@
+function GetComparisonResult(bytes32 key) public view returns (bool) {
+  // Lookup the comparison result in the mapping
+  Results storage result = results[key];
+  return result.comparisonResult;
+}
