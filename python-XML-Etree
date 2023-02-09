@@ -1,0 +1,14 @@
+import xml.etree.ElementTree as ET
+
+# Create the root element
+root = ET.Element('conversation')
+
+# Iterate through the conversation and create XML elements for each message
+for message in conversation:
+  msgElement = ET.SubElement(root, 'message')
+  ET.SubElement(msgElement, 'sender').text = message['sender']
+  ET.SubElement(msgElement, 'text').text = message['text']
+
+# Write the XML tree to a file
+tree = ET.ElementTree(root)
+tree.write('conversation.xml')
