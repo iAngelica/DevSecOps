@@ -1,0 +1,45 @@
+pragma solidity ^0.7.0;
+
+contract MultilangStorage {
+    // Variables to store data from multiple storage systems
+    uint256 public storedValue1;
+    uint256 public storedValue2;
+    uint256 public storedValue3;
+
+    // Function to set storedValue1
+    function setValue1(uint256 _value) public {
+        storedValue1 = _value;
+    }
+
+    // Function to set storedValue2
+    function setValue2(uint256 _value) public {
+        storedValue2 = _value;
+    }
+
+    // Function to set storedValue3
+    function setValue3(uint256 _value) public {
+        storedValue3 = _value;
+    }
+
+    // Function to retrieve the aggregated values from all storage systems
+    function getValues() public view returns (uint256, uint256, uint256) {
+        return (storedValue1, storedValue2, storedValue3);
+    }
+}
+
+()
+
+import spacy
+
+# Load the spaCy model
+nlp = spacy.load("en_core_web_sm")
+
+# Define the conversation text
+conversation = "User: Hey there!\nAI: Hello! How can I help you today?\nUser: Can you summarize this conversation?\nAI: Sure, I'd be happy to summarize it for you."
+
+# Process the text with spaCy
+doc = nlp(conversation)
+
+# Iterate over the sentences in the document
+for sent in doc.sents:
+    print(sent.text)
