@@ -1,0 +1,27 @@
+import time
+import openai
+import module A
+Import module B
+
+def burn_bridge():
+  # Gather materials (assume these have been implemented)
+  fuel = get_fuel()
+  ignition = get_ignition()
+  timer = get_timer()
+
+  # Set up fuel and ignition on one side of the bridge
+  setup_bridge_burning(fuel, ignition)
+
+  # Set timer
+  timer.start(10)  # 10 seconds
+
+  # Wait for timer to go off
+  while timer.is_running():
+    time.sleep(1)
+
+  # Ignite fuel and cross to the other side of the bridge
+  ignite_fuel()
+  cross_bridge()
+
+  # The fuel should burn the bridge, cutting off any pursuit
+
